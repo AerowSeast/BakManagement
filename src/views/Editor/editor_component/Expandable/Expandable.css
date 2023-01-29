@@ -1,0 +1,122 @@
+
+:root{
+    --white:#fff;
+}
+
+/* 輸入區塊樣式-editorJS */
+.expandable_title {
+    width: 100%;
+    padding:8px 10px;
+    font-size:1.3rem;
+    border-radius:4px;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.2);
+    border:1px solid rgba(0,0,0,0.15);
+    outline: none;
+    color:#333;
+}
+
+.expandable_cnt{
+    width: 100%;
+    padding:8px 10px;
+    font-size:1.3rem;
+    border-radius:4px;
+    box-shadow:4px 4px 6px rgba(0,0,0,0.1);
+    border:1px solid rgba(0,0,0,0.15);
+    outline: none;
+    color:#333;
+    resize:none;
+}
+
+.expandable{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    place-items: center;
+    gap:1.2rem;
+}
+
+.expandable_btn{
+    padding:5px 18px;
+    font-size:1.4rem;
+    background-color:rgba(0,0,0,0.5);
+    color:#fff;
+    border:none;
+    border-radius:6px;    
+    transition:all .8s;
+    margin-bottom:1rem;
+}
+
+.expandable_btn:hover{
+    background-color:rgba(0,0,0,0.9);
+    color:#fff;
+    letter-spacing: 8px;
+}
+
+/* editor結束 */
+
+.wrap{
+    margin-top:20px;
+    width: 100%;
+    gap:30px;
+    background-color:var(--white);
+    max-width:700px;
+    border-radius:4px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.25);
+}
+
+.accordions{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    cursor:pointer;
+    padding:5px 15px;
+}
+
+.accord_title{
+    font-size:1.5rem;
+}
+
+.chevron{
+    width:30px;
+    height:25px;
+    transition:transform .4s ease;
+    /* 預設旋轉0度 */
+    transform:rotate(0deg);
+}
+
+.par_box.active .chevron{
+    transform:rotate(360deg);
+}
+
+.par_box{
+    max-height:0;
+    overflow: hidden;
+    line-height:1.5;
+    font-size:1.3rem;
+    padding:0 18px;
+    transition:max-height 0.5s ease;
+    border-left:6px solid #a2d2ff;
+}
+
+.wrap.active .par_box{
+    max-height:300px;
+    animation:fade .8s ease-in-out;
+}
+
+.wrap.active .accordions .chevron{
+    transform:rotate(180deg);
+}
+
+/* 顯示文字內容-動畫效果 */
+@keyframes fade {
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0px);
+    }
+}
+
+
