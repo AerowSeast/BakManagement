@@ -79,21 +79,36 @@ import { onMounted, ref } from "vue";
 export default {
     setup() {
         // Table List from Axios GET
-        const tableData = ref([]);
+        const tableData = ref([
+            {
+                SN:"1",
+                Username:"One",
+                userGroup:"長老",
+                DateRegistered:"2023-01-14 13:53:06",
+                userState:"停用"
+            },
+            {
+                SN:"2",
+                Username:"Two",
+                userGroup:"幹部",
+                DateRegistered:"2023-01-27 13:53:06",
+                userState:"停用"
+            }
+        ]);
 
         // Axios GET Data
-        const getList = () => {
-            axios.get("/api/user")
-                .then((res) => {
-                    tableData.value = res.data;
-                    tableData.value.forEach(item => {
-                        ifStatus.value = item.Deactivated;
-                    })
-                })
-                .catch((error) => {
-                    console.log(`Request失敗：${error}`);
-                })
-        }
+        // const getList = () => {
+        //     axios.get("/api/user")
+        //         .then((res) => {
+        //             tableData.value = res.data;
+        //             tableData.value.forEach(item => {
+        //                 ifStatus.value = item.Deactivated;
+        //             })
+        //         })
+        //         .catch((error) => {
+        //             console.log(`Request失敗：${error}`);
+        //         })
+        // }
 
         // 判斷每個使用的的使用狀態(true、false)
         let ifStatus = ref("");
@@ -172,9 +187,9 @@ export default {
         };
 
         // onMounted
-        onMounted(() => {
-            getList();
-        })
+        // onMounted(() => {
+        //     getList();
+        // })
 
         return {
             tableData,

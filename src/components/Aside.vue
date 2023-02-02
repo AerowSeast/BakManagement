@@ -67,12 +67,12 @@ export default {
                         label: "聚會時間管理",
                         url: "partyTime/partyTime"
                     },
-                    {
-                        path: "/announce",
-                        name: "announce",
-                        label: "公告管理",
-                        url: "announce/announce"
-                    },
+                    // {
+                    //     path: "/announce",
+                    //     name: "announce",
+                    //     label: "公告管理",
+                    //     url: "announce/announce"
+                    // },
                     {
                         path: "/article",
                         name: "article",

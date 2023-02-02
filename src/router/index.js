@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 // 路由比對
 const routes = [
     {
-        redirect: "/home",
+        redirect: "/login",
         path: "/",
         component: () => import("@/views/Main.vue"),
         children: [
@@ -27,11 +27,11 @@ const routes = [
                 name: "partyTime",
                 component: () => import("@/views/PartyTime/PartyTime.vue")
             },
-            {
-                path: "/announce",
-                name: "announce",
-                component: () => import("@/views/Announce/Announce.vue")
-            },
+            // {
+            //     path: "/announce",
+            //     name: "announce",
+            //     component: () => import("@/views/Announce/Announce.vue")
+            // },
             {
                 path: "/Article",
                 name: "Article",

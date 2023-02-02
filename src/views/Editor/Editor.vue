@@ -149,7 +149,6 @@ export default {
 
 <style lang="less" scoped>
 #editorjs {
-    height: 80vh;
     display: flex;
     flex-direction: column;
     gap: 20px;

@@ -11,9 +11,9 @@
     <!--  List Content -->
     <el-row class="home" gutter="20" style="padding:15px 30px 15px 30px;margin:0">
         <el-table :data="tableData" style="width: 100%">
-            <el-table-column prop="articleTitle" label="文章標題" width="180" />
-            <el-table-column prop="articleImage" label="文章圖片" width="300" />
-            <el-table-column prop="articleCnt" label="文章內容" width="150" />
+            <el-table-column prop="articleTitle" label="文章標題" width="400" />
+            <el-table-column prop="articleImage" label="文章附檔" width="250" />
+            <el-table-column prop="articleCnt" label="文章內容" width="200" />
             <el-table-column prop="articleDate" label="發佈日期" width="150" />
 
             <!-- Edit or Del -->
@@ -38,7 +38,7 @@
                 </el-col>
 
                 <el-col :span="24">
-                    <el-form-item label="上傳圖片">
+                    <el-form-item label="上傳檔案">
                         <el-upload v-model:file-list="formArticle.articleImage" class="upload-demo"
                             action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
                             :on-change="handleChange">
@@ -72,11 +72,18 @@ export default {
         // Table List from Axios GET
         const tableData = ref([
             {
-                articleTitle:"文章標題",
-                articleImage:"文章圖片",
-                articleCnt:"文章內容",
-                articleDate:"發佈日期"
-            }
+                articleTitle:"目前國內疫情趨緩，部分防疫規定自 4 月 29 日起鬆綁",
+                articleImage:"covid-19",
+                articleCnt:"因應肺炎規範...",
+                articleDate:"2023-01-30"
+            },
+            {
+                articleTitle:"教會活動",
+                articleImage:"Church",
+                articleCnt:"教會活動事項...",
+                articleDate:"2023-01-30"
+            },
+            
         ])
 
         // 判斷Dialog Title is Insert or Edit

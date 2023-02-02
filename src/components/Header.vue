@@ -10,7 +10,7 @@
     <div class="center_cnt">
         <el-breadcrumb class="bread" separator="/">
             <!-- 首頁-鎖死 (必然存在) -->
-            <el-breadcrumb-item :to="{ path: '/' }">首頁</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/home' }">首頁</el-breadcrumb-item>
             <el-breadcrumb-item :to="current" v-if="current">{{ current }}</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
@@ -31,16 +31,26 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 import { useRouter  } from 'vue-router';
 export default {
     setup() {
         // define router
         const router = useRouter();
 
+        // define store
+        const store = useStore();
+
         // 動態綁定image src屬性
         const getImgSrc = () => {
             return new URL("../images/user_inform.jpg", import.meta.url).href;
         }
+
+        // 取得VueX內的CurrentValue
+        const current = computed(()=>{
+            return store.state.currentMenu;
+        })
 
         // handle logout
         const handleLogout = () =>{
@@ -49,7 +59,7 @@ export default {
             })
         }
 
-        return { getImgSrc , handleLogout }
+        return { getImgSrc , handleLogout , current }
     }
 }
 </script>

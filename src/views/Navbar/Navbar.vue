@@ -27,7 +27,7 @@
     </el-row>
 
     <!-- Dialog Windows-->
-    <el-dialog class="dialog" v-model="dialogVisible" :title="(ifTitle === 'add') ? '新增用戶' : '編輯用戶'" width="30%"
+    <el-dialog class="dialog" v-model="dialogVisible" :title="(ifTitle === 'add') ? '新增導覽列' : '編輯導覽列'" width="30%"
         :before-close="handleClose">
         <!-- form 內容 -->
         <el-form :inline="true" :model="formNavbar">

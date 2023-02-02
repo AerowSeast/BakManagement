@@ -39,11 +39,11 @@
                     </el-form-item>
                 </el-col>
                 <!-- 連結網址 -->
-                <el-col :span="24">
+                <!-- <el-col :span="24">
                     <el-form-item label="網址連結 (URL)：">
                         <el-input v-model="formNews.url" placeholder="請輸入網址" />
                     </el-form-item>
-                </el-col>
+                </el-col> -->
                 <!-- 連結Tabs標題 -->
                 <el-col :span="24">
                     <el-form-item label="選擇標籤">
