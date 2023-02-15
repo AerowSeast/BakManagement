@@ -11,7 +11,7 @@
     <!--  List Content -->
     <el-row class="home" gutter="20" style="padding:15px 30px 15px 30px;margin:0">
         <el-table :data="tableData" style="width: 100%">
-            <el-table-column prop="title" label="連結標題" width="500" />
+            <el-table-column prop="title" label="消息標題" width="500" />
             <el-table-column prop="url" label="網址列" width="400" />
             <el-table-column prop="start_date" label="開始日期" width="150" />
             <el-table-column prop="end_date" label="結束日期" width="150" />
@@ -32,10 +32,10 @@
         <!-- form 內容 -->
         <el-form :inline="true" :model="formNews">
             <el-row>
-                <!-- 連結標題 -->
+                <!-- 消息標題 -->
                 <el-col :span="24">
-                    <el-form-item label="連結標題">
-                        <el-input v-model="formNews.title" placeholder="請輸入連結標題" />
+                    <el-form-item label="消息標題">
+                        <el-input v-model="formNews.title" placeholder="請輸入消息標題" />
                     </el-form-item>
                 </el-col>
                 <!-- 連結網址 -->
