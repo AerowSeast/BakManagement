@@ -62,6 +62,25 @@
                         <el-input v-model="formUser.Email" placeholder="請輸入使用者信箱" />
                     </el-form-item>
                 </el-col>
+
+                <!-- 使用狀態 -->
+                <el-col :span="24">
+                    <el-form-item label="選擇標籤">
+                        <el-dropdown>
+                            <el-button type="primary">
+                                <el-icon class="el-icon--right">
+                                    <arrow-down v-model="formNews.page" />
+                                </el-icon>
+                            </el-button>
+                            <template #dropdown>
+                                <el-dropdown-menu>
+                                    <el-dropdown-item>啟用</el-dropdown-item>
+                                    <el-dropdown-item>停用</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </template>
+                        </el-dropdown>
+                    </el-form-item>
+                </el-col>
             </el-row>
         </el-form>
         <template #footer>
