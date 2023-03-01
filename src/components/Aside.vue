@@ -126,7 +126,7 @@ export default {
                 path: "/fileUpload",
                 name: "fileUpload",
                 label: "檔案管理",
-                icon: "Document",
+                icon: "Files",
                 url: "fileUpload/fileUpload",
             }
         ];

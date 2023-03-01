@@ -19,7 +19,7 @@
             <!-- Edit or Del -->
             <el-table-column fixed="right" label="處理" width="120">
                 <template #default>
-                    <el-button link type="primary" size="small">編輯</el-button>
+                    <!-- <el-button link type="primary" size="small">編輯</el-button> -->
                     <el-button link type="danger" size="small" @click="handleDel">刪除</el-button>
                 </template>
             </el-table-column>

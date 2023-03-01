@@ -1,5 +1,4 @@
-<template>
-    <!--  Insert Button Control -->
+<template><!--  Insert Button Control -->
     <el-row class="home" gutter="20" style="padding: 15px 0 0 20px;margin:0">
         <el-col :span="24">
             <div class="btn_container">
@@ -16,7 +15,7 @@
             <el-table-column prop="userGroup" label="使用者群組" width="150" />
             <el-table-column prop="DateRegistered" label="創建日期" width="200" />
             <el-table-column label="使用狀態" width="200">
-                {{ ifStatus === 0 ? "停用" : "啟用"}}
+                {{ ifStatus === 0 ? "停用" : "啟用" }}
             </el-table-column>
 
             <!-- Edit and Del -->
@@ -95,39 +94,26 @@
 <script>
 import axios from "axios";
 import { onMounted, ref } from "vue";
+// CSRF 複用檔案
+import generateRandomCSRF from "@/CSRF/CSRF.js";
 export default {
     setup() {
+        // CSRF
+        generateRandomCSRF();
+
         // Table List from Axios GET
-        const tableData = ref([
-            {
-                SN:"1",
-                Username:"One",
-                userGroup:"長老",
-                DateRegistered:"2023-01-14 13:53:06",
-                userState:"停用"
-            },
-            {
-                SN:"2",
-                Username:"Two",
-                userGroup:"幹部",
-                DateRegistered:"2023-01-27 13:53:06",
-                userState:"停用"
-            }
-        ]);
+        const tableData = ref([]);
 
         // Axios GET Data
-        // const getList = () => {
-        //     axios.get("/api/user")
-        //         .then((res) => {
-        //             tableData.value = res.data;
-        //             tableData.value.forEach(item => {
-        //                 ifStatus.value = item.Deactivated;
-        //             })
-        //         })
-        //         .catch((error) => {
-        //             console.log(`Request失敗：${error}`);
-        //         })
-        // }
+        const getList = async () => {
+            try{
+                const res = await axios.get("https://tpkchcms.000webhostapp.com/");
+                console.log(res);
+                tableData.value = res.data;
+            }catch (err){
+                console.log(err.message);
+            }
+        }
 
         // 判斷每個使用的的使用狀態(true、false)
         let ifStatus = ref("");
@@ -140,7 +126,6 @@ export default {
 
         // 點擊新增按鈕-彈出Dialog Windows
         const jumpDialog = () => {
-            formUser.value = "";
             dialogVisible.value = true;
             ifTitle.value = "add";
         };
@@ -158,33 +143,35 @@ export default {
 
         // FormUser Table
         const formUser = ref({
-            SN: "",
-            Username: "",
-            Nickname: "",
-            Password: "",
-            Email: "",
-            DateRegistered: "",
-            Deactivated: ""
+            Username:"",
+            Nickname:"",
+            Password:"",
+            Email:""
+        })
+
+        // FormNews Table
+        const formNews = ref({
+            title: "",
+            url: "",
+            page: "",
+            start_data: ""
         });
 
         // Insert Dialog 確認 Button Handle
-        const handleInsert = () => {
+        const handleInsert = async () => {
             dialogVisible.value = false;
 
             // Axios POST Data 至後端
-            axios.post("/api/user/", {
-                Username: formUser.value.Username,
-                Email: formUser.value.Email,
-                PasswordHash: formUser.value.PasswordHash,
-                Firstname: "N/A",
-                Lastname: "N/A",
-                Nickname: formUser.value.Nickname,
-                DateRegistered: "2023-01-18 12:05:08",
-                Deactivated: 0,
-                CreatorUserSN: 0
-            })
-                .then(res => { console.log(res) })
-                .catch(error => { console.log(error) })
+            try{
+                const response = await axios.post("/api/user",formUser.value,{
+                    headers:{
+                        xsrfCookieName:'XSRF-TOKEN',
+                        xsrfHeaderName:'X-XSRF-TOKEN'
+                    }
+                });
+            }catch (error){
+                console.log(error.message);
+            }
         };
 
         // 編輯TableData的資料 Edit
@@ -206,9 +193,9 @@ export default {
         };
 
         // onMounted
-        // onMounted(() => {
-        //     getList();
-        // })
+        onMounted(() => {
+            getList();
+        })
 
         return {
             tableData,
@@ -216,12 +203,13 @@ export default {
             jumpDialog,
             handleClose,
             formUser,
+            formNews,
             handleInsert,
             handelEdit,
             handleDel,
             ifStatus,
             ifTitle
-        };
-    },
-};
+        }
+    }
+}
 </script>
